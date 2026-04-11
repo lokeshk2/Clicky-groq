@@ -1,0 +1,9 @@
+name = "clicky-groq-proxy"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[vars]
+GROQ_VOICE_ID = "Chip-PlayAI"
+
+# Set secrets via: wrangler secret put GROQ_API_KEY
+# wrangler secret put WORKER_SECRET
