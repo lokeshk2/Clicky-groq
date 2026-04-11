@@ -45,7 +45,9 @@ export function registerPushToTalkHotkey(panel: BrowserWindow, overlay: BrowserW
     sync()
   }
 
-  void listener.addListener(keyListener)
+  void listener.addListener(keyListener).catch((err) => {
+    console.error('[Clicky] Global keyboard listener failed (push-to-talk may not work):', err)
+  })
 
   return () => {
     listener.removeListener(keyListener)

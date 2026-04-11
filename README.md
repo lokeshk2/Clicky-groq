@@ -32,6 +32,8 @@ npm install
 npm run dev
 ```
 
+**Linux:** `postinstall` sets `+x` on `node-global-key-listener`’s `X11KeyServer` binary. Without it, dev can error with `Unable to find pkexec or kdesudo` when the helper fails to start.
+
 In the panel, set **Worker URL** and **Worker secret** (stored in `localStorage`).
 
 ### Build
