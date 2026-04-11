@@ -4,9 +4,24 @@ Menu bar AI companion (Electron + React + TypeScript + Vite) that uses **Groq** 
 
 ## Prerequisites
 
-- Node 20+
-- macOS (primary target) or Windows
-- Groq API key + a shared secret for the worker
+- **Node.js 20+**
+- **macOS** (primary), **Windows**, or **Linux** (X11; Wayland may need an XWayland session for global keys)
+- **Groq API key** + **shared worker secret** (stored in the Cloudflare Worker)
+
+### One-shot install + verify
+
+```bash
+npm run setup
+```
+
+This runs `npm install` (including the Linux `X11KeyServer` fix), **TypeScript check**, and **`build:app`**.
+
+### Linux notes
+
+- **Display:** Electron needs a running display. On a headless/SSH box use a virtual framebuffer, e.g.  
+  `xvfb-run -a npm run dev`
+- **Push-to-talk:** Uses `node-global-key-listener` + `X11KeyServer`. `postinstall` marks that binary executable so you avoid the `pkexec` / `kdesudo` error after `npm install`.
+- Harmless log noise: DBus / GPU messages on Linux without a full desktop session are common.
 
 ## Cloudflare Worker
 
@@ -27,12 +42,10 @@ Routes (header `X-Worker-Secret: <WORKER_SECRET>`):
 ## Desktop app
 
 ```bash
-npm install
+npm install   # or: npm run setup
 # optional: cp .env.example .env and set VITE_WORKER_URL
 npm run dev
 ```
-
-**Linux:** `postinstall` sets `+x` on `node-global-key-listener`’s `X11KeyServer` binary. Without it, dev can error with `Unable to find pkexec or kdesudo` when the helper fails to start.
 
 In the panel, set **Worker URL** and **Worker secret** (stored in `localStorage`).
 

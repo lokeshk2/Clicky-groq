@@ -6,8 +6,12 @@
   "author": "",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "postinstall": "node scripts/fix-x11-keyserver.mjs",
+    "setup": "npm install && npm run typecheck && npm run build:app",
     "dev": "electron-vite dev",
     "build": "electron-vite build && electron-builder",
     "build:app": "electron-vite build",
