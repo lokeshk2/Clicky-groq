@@ -12,10 +12,10 @@
   "scripts": {
     "postinstall": "node scripts/fix-x11-keyserver.mjs",
     "setup": "npm install && npm run typecheck && npm run build:app",
-    "dev": "electron-vite dev",
-    "build": "electron-vite build && electron-builder",
-    "build:app": "electron-vite build",
-    "preview": "electron-vite preview",
+    "dev": "npx electron-vite dev",
+    "build": "npx electron-vite build && npx electron-builder",
+    "build:app": "npx electron-vite build",
+    "preview": "npx electron-vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
     "worker:dev": "wrangler dev worker/src/index.ts",
     "worker:deploy": "wrangler deploy worker/src/index.ts"
